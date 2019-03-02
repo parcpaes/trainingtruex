@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import UserList from './components/users/UserList';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-       
+const App = ()=>{  
+   //<Route path='/:user/repos' exact component={UserList}/>
+    return (      
+      <div className="container">
+        <BrowserRouter>
+          <Switch>
+              <Route path='/' exact component={UserList}/>
+              
+          </Switch>
+        </BrowserRouter>
       </div>
-    );
-  }
+    );  
 }
 
 export default App;
