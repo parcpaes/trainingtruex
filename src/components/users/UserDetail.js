@@ -7,7 +7,7 @@ const UserDetail =(props)=>{
         <div className="card">
             <div className="card-image">
                 <figure className="image is-5by4">
-                <img src={`${user.avatar_url}`} alt="avatar"/>
+                {(user.avatar_url)? <img src={`${user.avatar_url}`}alt="avatar"/>:<img src='/assets/img/avatar.png' alt="avatar"/> }
                 </figure>
             </div>
             <div className="card-content">
