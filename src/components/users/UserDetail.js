@@ -7,7 +7,7 @@ const UserDetail =(props)=>{
         <div className="card">
             <div className="card-image">
                 <figure className="image is-5by4">
-                <img src={`${user.avatar_url}`} alt="Placeholder image"/>
+                <img src={`${user.avatar_url}`} alt="avatar"/>
                 </figure>
             </div>
             <div className="card-content">
@@ -18,10 +18,10 @@ const UserDetail =(props)=>{
                 </div>                
                 <footer className="card-footer">
                     <p className="card-footer-item">
-                        <span><a href={`${user.html_url}`} target="_blank">Github</a></span>
+                        <span><a href={`${user.html_url}`} target="_blank" rel="noopener noreferrer">Github</a></span>
                     </p>
                     <p className="card-footer-item">
-                        <span><Link to={`/${user.login}/repos`}>Repositorios</Link></span>
+                        <span><Link to={`/users/${user.login}/repos`}>Repositorios</Link></span>
                     </p>
                 </footer>
             </div>
