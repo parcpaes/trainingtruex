@@ -15,7 +15,7 @@ const UserDetail =(props)=>{
                     <div className="media-content">
                         <p className="title is-4">{user.login}</p>                        
                     </div>
-                </div>                
+                </div>
                 <footer className="card-footer">
                     <p className="card-footer-item">
                         <span><a href={`${user.html_url}`} target="_blank" rel="noopener noreferrer">Github</a></span>

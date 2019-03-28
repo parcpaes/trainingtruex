@@ -1,15 +1,17 @@
 import React from 'react';
 import userResource from '../userResource';
+import queryString from 'query-string'; 
 import ReposDetail from './ReposDetail';
 import Pagination from '../Pagination';
 import {Link} from 'react-router-dom';
 
 const ReposList = (props)=>{    
     const {userId} = props.match.params;
-    if(!userId) return <div>Usuario not found</div>
-
+    if(!userId) return <div>Usuario not found</div>    
     const {location} = props;    
-    let numg = (location.search)?parseInt(location.search.replace('?','')):0;    
+    const querystring = queryString.parse(location.search);
+    const numg = (querystring.page)?(parseInt(querystring.page)-1)*8:0;
+
     const repoData = userResource(`users/${userId}/repos`,numg);
 
     const reposListPage = ()=>{
@@ -38,7 +40,12 @@ const ReposList = (props)=>{
                 <div className="columns is-multiline is-mobile">
                     {reposListPage()}
                 </div>
-                <Pagination dataname={`users/${userId}/repos`} numpage={repoData.numpage} nextpage={repoData.handleNextClick} backpage={repoData.handleBackClick}/>
+                <Pagination 
+                    dataname={`users/${userId}/repos`}
+                    numpage={repoData.numpage} 
+                    totalPages={repoData.sourceData.length} 
+                    nextpage={repoData.handleNextClick} 
+                    backpage={repoData.handleBackClick}/>
             </div>
         </React.Fragment>
     );
