@@ -13,19 +13,19 @@ const userResource = (pathurl,ng)=>{
         github.get(pathurl).then((res)=>{
             setResource(res.data);            
             setSliceData(res.data.slice(increment,max_range+increment));            
-        }).catch((err)=>{
-            setResource({error: err});
+        }).catch((err)=>{            
+            setResource([{error: err}]);
         });
     },[pathurl]);
 
    return {
         //pagination
-        handleNextClick:function(){
+        handleNextPageClick:function(){
             if(slicedata.length<max_range) return;            
             setSliceData(sourceData.slice(increment+rang,max_range+increment+rang));
             setIncrement(increment+rang);
         },
-        handleBackClick:function(){
+        handleBackPageClick:function(){
             if(increment<min_range) return;
             setSliceData(sourceData.slice(increment-rang,max_range+increment-rang));
             setIncrement(increment-rang);

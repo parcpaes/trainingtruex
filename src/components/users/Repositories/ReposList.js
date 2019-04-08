@@ -16,6 +16,7 @@ const ReposList = (props)=>{
 
     const reposListPage = ()=>{
         if(!repoData.slicedata) return <div>No existe ningun repositorio</div>       
+        console.log(repoData.slicedata);
         if(!repoData.slicedata.length) return (<progress className="progress is-large is-info" max="100">60%</progress>); 
         return repoData.slicedata.map((repo)=>{ 
             return (<div className="column is-narrow" key={repo.id}><ReposDetail repo={repo}/></div>)
@@ -44,8 +45,8 @@ const ReposList = (props)=>{
                     dataname={`users/${userId}/repos`}
                     numpage={repoData.numpage} 
                     totalPages={repoData.sourceData.length} 
-                    nextpage={repoData.handleNextClick} 
-                    backpage={repoData.handleBackClick}/>
+                    nextpage={repoData.handleNextPageClick} 
+                    backpage={repoData.handleBackPageClick}/>
             </div>
         </React.Fragment>
     );

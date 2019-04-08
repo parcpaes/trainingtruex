@@ -2,9 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 const Pagination = (props)=>{
-    let paginationNum, buttonBackPage,buttonNextPage =  <React.Fragment></React.Fragment>;    
+    let numberOfPages, buttonBackPage,buttonNextPage =  <React.Fragment></React.Fragment>;    
     if(props.numpage>1){
-        paginationNum = paginationNum = <li><a href='#1' className="pagination-link" aria-label="Goto page 1">{props.numpage}</a></li>;
+        numberOfPages = numberOfPages = <li><a href='#1' className="pagination-link" aria-label="Goto page 1">{props.numpage}</a></li>;
         buttonBackPage = <Link to={`/${props.dataname}?page=${(props.numpage)?props.numpage-1:0}`} className="pagination-previous" onClick={()=>{props.backpage()}}>Back page</Link>;
     }
     if(props.totalPages>(props.numpage*8))
@@ -15,7 +15,7 @@ const Pagination = (props)=>{
             {buttonBackPage}
             {buttonNextPage}
             <ul className="pagination-list">
-                 {paginationNum}
+                 {numberOfPages}
             </ul>
         </nav>
     )

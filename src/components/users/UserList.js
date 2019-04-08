@@ -18,7 +18,7 @@ const ListUsers = (props)=>{
                 <div className="column is-narrow" key={user.id}><UserDetail user={user}/></div>
             );
         })
-    } 
+    }
     return(
         <div className="section">
             <div className="columns is-multiline is-mobile">         
@@ -28,8 +28,8 @@ const ListUsers = (props)=>{
                 dataname='users' 
                 numpage={userData.numpage}
                 totalPages={userData.sourceData.length} 
-                nextpage={userData.handleNextClick} 
-                backpage={userData.handleBackClick}/>
+                nextpage={userData.handleNextPageClick} 
+                backpage={userData.handleBackPageClick}/>
         </div>
     )
 }
