@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const UserDetail =(props)=>{
+const UserDetail =(props)=>{    
     const {user} = props;    
     return(
         <div className="card">

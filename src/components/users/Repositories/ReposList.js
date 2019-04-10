@@ -1,5 +1,6 @@
 import React from 'react';
-import userResource from '../userResource';
+import useResource from '../useResource';
+import usePagination from '../usePagination';
 import queryString from 'query-string'; 
 import ReposDetail from './ReposDetail';
 import Pagination from '../Pagination';
@@ -8,17 +9,17 @@ import {Link} from 'react-router-dom';
 const ReposList = (props)=>{    
     const {userId} = props.match.params;
     if(!userId) return <div>Usuario not found</div>    
-    const {location} = props;    
+    const {location} = props;        
     const querystring = queryString.parse(location.search);
-    const numg = (querystring.page)?(parseInt(querystring.page)-1)*8:0;
+    const currentPage = (querystring.page)?(parseInt(querystring.page)-1)*8:0;
 
-    const repoData = userResource(`users/${userId}/repos`,numg);
+    const repositoryData = useResource(`users/${userId}/repos`);
+    const pagination = usePagination(repositoryData,currentPage);
 
     const reposListPage = ()=>{
-        if(!repoData.slicedata) return <div>No existe ningun repositorio</div>       
-        console.log(repoData.slicedata);
-        if(!repoData.slicedata.length) return (<progress className="progress is-large is-info" max="100">60%</progress>); 
-        return repoData.slicedata.map((repo)=>{ 
+        if(!pagination.slicedata) return <div>No existe ningun repositorio</div>        
+        if(!pagination.slicedata.length) return (<progress className="progress is-large is-info" max="100">60%</progress>); 
+        return pagination.slicedata.map((repo)=>{ 
             return (<div className="column is-narrow" key={repo.id}><ReposDetail repo={repo}/></div>)
         });
     }
@@ -43,10 +44,10 @@ const ReposList = (props)=>{
                 </div>
                 <Pagination 
                     dataname={`users/${userId}/repos`}
-                    numpage={repoData.numpage} 
-                    totalPages={repoData.sourceData.length} 
-                    nextpage={repoData.handleNextPageClick} 
-                    backpage={repoData.handleBackPageClick}/>
+                    numpage={pagination.numerOfPage} 
+                    totalPages={repositoryData.length} 
+                    nextpage={pagination.handleNextPageClick} 
+                    backpage={pagination.handleBackPageClick}/>
             </div>
         </React.Fragment>
     );
