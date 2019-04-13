@@ -1,16 +1,15 @@
 import React from 'react';
-import useResource from './useResource';
+import useResource from '../hooks/useResource';
 import UserDetail from './UserDetail';
 import Pagination from './Pagination';
 import queryString from 'query-string';
-import usePagination from './usePagination';
+import usePagination from '../hooks/usePagination';
 
 const ListUsers = (props)=>{    
     const {location} = props;
     const querystring = queryString.parse(location.search);
-
-    const currentPage = (querystring.page) ? (parseInt(querystring.page)-1)*8:0;
-
+    const currentPage = (querystring.page) ? parseInt(querystring.page)-1:0;
+    
     const userData = useResource('users');
     const pagination = usePagination(userData,currentPage);
     

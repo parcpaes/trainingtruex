@@ -1,6 +1,6 @@
 import React from 'react';
-import useResource from '../useResource';
-import usePagination from '../usePagination';
+import useResource from '../../hooks/useResource';
+import usePagination from '../../hooks/usePagination';
 import queryString from 'query-string'; 
 import ReposDetail from './ReposDetail';
 import Pagination from '../Pagination';
@@ -11,7 +11,7 @@ const ReposList = (props)=>{
     if(!userId) return <div>Usuario not found</div>    
     const {location} = props;        
     const querystring = queryString.parse(location.search);
-    const currentPage = (querystring.page)?(parseInt(querystring.page)-1)*8:0;
+    const currentPage = (querystring.page)?(parseInt(querystring.page)-1):0;
 
     const repositoryData = useResource(`users/${userId}/repos`);
     const pagination = usePagination(repositoryData,currentPage);

@@ -1,9 +1,9 @@
 import {useState} from 'react';
 
 function usePagination(sourceData=[],currentPage=0,perPage=8){
-    const [page,setPage] = useState(currentPage);
+    const [page,setPage] = useState(currentPage*perPage);
     let slicedata =  sourceData.slice(page,page+perPage);
-    const MINNUMBERPAGE= 0;
+    const MINNUMBERPAGE=0;
     return {
         handleNextPageClick:function(){
             if(slicedata.length<perPage) return;
